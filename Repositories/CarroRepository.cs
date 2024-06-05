@@ -18,11 +18,11 @@ namespace Repositories
                 string jsonString = JsonSerializer.Serialize(carros, options);
                 //salvar o arquivo .json em um local especifico
 
-                string caminho = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Documents\\Estagio 5by5\\Projetos Avaliativos - Pesquisas\\Garagem de Carros\\";
+                string caminho = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Documents\\";
                 File.WriteAllText(caminho + "dados_carros.json", jsonString);
 
                 Console.WriteLine("\nArquivo gerado com sucesso!");
-                Console.WriteLine($"Foi salvo na seguinte pasta desta solução: \\Documents\\Estagio 5by5\\Projetos Avaliativos - Pesquisas\\Garagem de Carros\\");
+                Console.WriteLine($"Foi salvo na seguinte pasta desta solução: \\Documents");
 
                 
 
