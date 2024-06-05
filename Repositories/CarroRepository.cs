@@ -17,10 +17,15 @@ namespace Repositories
                 JsonSerializerOptions options = new JsonSerializerOptions();
                 string jsonString = JsonSerializer.Serialize(carros, options);
                 //salvar o arquivo .json em um local especifico
-                File.WriteAllText("dados_carros.json", jsonString);
+
+                string caminho = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Documents\\";
+                File.WriteAllText(caminho + "dados_carros.json", jsonString);
 
                 Console.WriteLine("\nArquivo gerado com sucesso!");
-                Console.WriteLine($"Foi salvo na seguinte pasta desta solução: \\Geracao_Dados\\Geracao_Dados\\bin\\Debug\\net6.0");
+                Console.WriteLine($"Foi salvo na seguinte pasta desta solução: \\Documents");
+
+                
+
             }
             catch (Exception)
             {
@@ -40,5 +45,6 @@ namespace Repositories
             }
             return carros;
         }
+
     }
 }
