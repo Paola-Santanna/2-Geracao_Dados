@@ -1,4 +1,7 @@
-﻿namespace Models
+﻿using Newtonsoft.Json;
+using System.Text.Json.Serialization;
+
+namespace Models
 {
     public class Carro
     {
@@ -7,14 +10,15 @@
         public int AnoModelo { get; set; }
         public int AnoFabricacao { get; set; }
         public string Cor { get; set; }
-        public Carro() 
+        public int Vendido { get; set; }
+        public Carro()
         {
             PopularPropriedades();
         }
 
         private string GerarCor()
         {
-            List<string> cores = new() { "Cinza", "Amarelo", "Preto", "Branco", "Vermelho"};
+            List<string> cores = new() { "Cinza", "Amarelo", "Preto", "Branco", "Vermelho" };
             int indice = new Random().Next(cores.Count);
             string corGerada = cores[indice];
             return corGerada;
@@ -22,7 +26,7 @@
 
         private string GerarNome()
         {
-            List<string> nomes = new() { "Prisma", "Fox", "Kombi Corujinha", "Jeep", "Compass", "Uno"};
+            List<string> nomes = new() { "Prisma", "Fox", "Kombi Corujinha", "Jeep", "Compass", "Uno" };
             int indice = new Random().Next(nomes.Count);
             string nomeGerado = nomes[indice];
             return nomeGerado;
@@ -36,7 +40,7 @@
 
         private int GerarAnoFabricacao()
         {
-            
+
             int AnoGerado = new Random().Next(1990, 2024);
             return AnoGerado;
         }
@@ -63,6 +67,23 @@
             return num;
         }
 
+        private int StatusVendido()
+        {
+            int status = 0 ;
+            bool vendido = false;
+            
+            do
+            {
+                status = new Random().Next(-1, 2);
+            } while (status != 0 && status != 1);
+
+            //if (status == 1)
+            //    vendido = true;
+            //else
+            //    vendido = false;
+
+            return status;
+        }
         private void PopularPropriedades()
         {
             this.Placa = GerarPlaca();
@@ -85,10 +106,12 @@
             this.AnoModelo = anoModelo;
             this.AnoFabricacao = anoFabricacao;
             this.Cor = GerarCor();
+            this.Vendido = StatusVendido();
         }
         public override string? ToString()
         {
-            return $"Placa: {this.Placa} \nNome: {this.Nome} \nAno do Modelo: {this.AnoModelo} \nAno da Fabricação: {this.AnoFabricacao} \nCor: {this.Cor}";
+            return $"Placa: {this.Placa} \nNome: {this.Nome} \nAno do Modelo: {this.AnoModelo} \nAno da Fabricação: {this.AnoFabricacao} \nCor: {this.Cor}, \nVendido: {this.Vendido}";
         }
+
     }
 }
