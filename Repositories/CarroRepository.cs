@@ -11,27 +11,25 @@ namespace Repositories
         public static void ConverterJson()
         {
             List<Carro> carros = GerarCarros();
+            List<string> jsonStrings = new();
+            string caminho = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Documents\\";
 
             try
             {
                 JsonSerializerOptions options = new JsonSerializerOptions();
                 string jsonString = JsonSerializer.Serialize(carros, options);
-                //salvar o arquivo .json em um local especifico
-
-                string caminho = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Documents\\";
+                
                 File.WriteAllText(caminho + "dados_carros.json", jsonString);
 
                 Console.WriteLine("\nArquivo gerado com sucesso!");
                 Console.WriteLine($"Foi salvo na seguinte pasta desta solução: \\Documents");
 
-                
-
-            }
-            catch (Exception)
+            } catch (Exception)
             {
                 Console.WriteLine("\nFalha ao gerar o arquivo!\n");
             }
         }
+  
 
         public static List<Carro> GerarCarros()
         {
@@ -45,6 +43,5 @@ namespace Repositories
             }
             return carros;
         }
-
     }
 }
